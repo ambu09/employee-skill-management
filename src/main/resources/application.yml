@@ -1,0 +1,10 @@
+logging:
+  level:
+    com.jlr.api.cdt.bpm: DEBUG
+management:
+  endpoint:
+    health:
+      show-details: always
+spring:
+  profiles:
+    include: properties

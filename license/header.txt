@@ -1,0 +1,2 @@
+Copyright (C) ${project.inceptionYear}, Oraganization - All Rights Reserved.
+CONFIDENTIAL INFORMATION - DO NOT DISTRIBUTE

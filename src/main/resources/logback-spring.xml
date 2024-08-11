@@ -1,0 +1,50 @@
+<!-- logback-spring.xml -->
+<configuration>
+	<springProfile name="local">
+		<property resource="application-properties.yml" />
+		<contextName>${spring.application.name}</contextName>
+		<include
+			resource="org/springframework/boot/logging/logback/base.xml" />
+	</springProfile>
+	<springProfile name="!local">
+		<property resource="application-properties.yml" />
+		<contextName>${spring.application.name}</contextName>
+		<appender name="CONSOLE"
+			class="ch.qos.logback.core.ConsoleAppender">
+			<encoder
+				class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+				<providers>
+					<logLevel>
+						<fieldName>level</fieldName>
+					</logLevel>
+					<callerData>
+						<classFieldName>class</classFieldName>
+						<methodFieldName>method</methodFieldName>
+						<lineFieldName>line</lineFieldName>
+					</callerData>
+					<threadName>
+						<fieldName>thread</fieldName>
+					</threadName>
+					<mdc />
+					<arguments>
+						<includeNonStructuredArguments>false</includeNonStructuredArguments>
+					</arguments>
+					<stackTrace>
+						<fieldName>stack</fieldName>
+					</stackTrace>
+					<correlation-id>
+						correlation-id
+					</correlation-id>
+					<message>
+						<fieldName>msg</fieldName>
+					</message>
+				</providers>
+			</encoder>
+		</appender>
+		<root level="*">
+			<appender-ref ref="CONSOLE" />
+		</root>
+
+
+	</springProfile>
+</configuration>

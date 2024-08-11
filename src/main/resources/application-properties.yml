@@ -1,0 +1,61 @@
+management:
+    endpoint:
+        health:
+            enabled: true
+            group:
+                readiness:
+                    include: readinessState,livenessState
+            show-components: always
+            show-details: never
+        info:
+            enabled: true
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true
+    endpoints:
+        enabled-by-default: true
+        web:
+            exposure:
+                include: info,health,metrics,prometheus
+    health:
+        circuitbreakers:
+            enabled: true
+        probes:
+            enabled: true
+    metrics:
+        export:
+            prometheus:
+                enabled: true
+server:
+    tomcat:
+        max-threads: 300
+    servlet:
+        context-path: /skill-management-service
+    shutdown: graceful
+spring:
+    application:
+        name: skill-management-api
+    lifecycle:
+        timeout-per-shutdown-phase: 20s
+    main:
+        banner-mode: 'OFF'
+    datasource: 
+        url: jdbc:mysql://localhost:3306/org?createDatabaseIfNotExist=true
+        username: root
+        password: sqltest
+    data:
+    jpa:
+        show-sql: true
+        hibernate:
+           ddl-auto: update
+        properties:
+           hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+    security:
+        user:
+           name: admin
+           password: admin@2024
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
